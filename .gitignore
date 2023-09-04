@@ -1,0 +1,11 @@
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/storage/*.p8
+/vendor
+.editorconfig
+npm-debug.log
+.DS_Store
+.htaccess
+*.zip
