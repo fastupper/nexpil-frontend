@@ -14,3 +14,10 @@ export const server = {
   // serverURL: process.env.REACT_APP_API_URL,
   // domainURL: process.env.REACT_APP_DOMAIN_URL,
 }
+
+export const axios_header = {
+    headers: {
+        'Authorization': 'Bearer ' + localStorage.token,
+        'Content-Type': 'application/json',
+    }
+}

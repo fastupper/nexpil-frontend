@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './style.css';
+import './style.scss';
 import { BsCalendar, BsPerson} from "react-icons/bs";
 import { sharedColors } from '../../theme/sharedColor';
 import { routers } from '../../config/router';
@@ -62,18 +62,18 @@ export const SideBar = ({ select }) => {
         if (foo == "videocall" || foo == "video") {
             // alert("tele");
         navIcons = [
-            // {
-            //     route: routers.HOMEPAGE,
-            //     element: <BsPerson size="33px" color={sharedColors.primaryFontColor} />,
-            //     id: 'home',
-            //     name: 'Patients',
-            // }, 
             {
-                route: routers.CALENDAR_PAGE,
-                element: <BsCalendar size="33px" color={sharedColors.primaryFontColor} />,
-                id: 'calendar',
-                name: 'Schedule',
-            },
+                route: routers.HOMEPAGE,
+                element: <BsPerson size="33px" color={sharedColors.primaryFontColor} />,
+                id: 'home',
+                name: 'Patients',
+            }, 
+            // {
+            //     route: routers.CALENDAR_PAGE,
+            //     element: <BsCalendar size="33px" color={sharedColors.primaryFontColor} />,
+            //     id: 'calendar',
+            //     name: 'Schedule',
+            // },
             // {
             //     route: routers.CHATPAGE,
             //     element: <BsChatSquareDots size="33px" color={sharedColors.primaryFontColor} />,
@@ -92,12 +92,12 @@ export const SideBar = ({ select }) => {
             //     id: 'setting',
             //     name: 'Settings',
             // }, 
-            {
-                route: routers.TELEHEALTHPAGE,
-                element: <BsCalendar size="33px" color={sharedColors.primaryFontColor} />,
-                id: 'chat',
-                name: 'Telehealth',
-            },
+            // {
+            //     route: routers.TELEHEALTHPAGE,
+            //     element: <BsCalendar size="33px" color={sharedColors.primaryFontColor} />,
+            //     id: 'chat',
+            //     name: 'Telehealth',
+            // },
             {
                 route: "/",
                 // element: <BiLogOut size="33px" color={sharedColors.primaryFontColor} />,
@@ -115,12 +115,12 @@ export const SideBar = ({ select }) => {
                     id: 'home',
                     name: 'Patients',
                 }, 
-                {
-                    route: routers.CALENDAR_PAGE,
-                    element: <BsCalendar size="33px" color={sharedColors.primaryFontColor} />,
-                    id: 'calendar',
-                    name: 'Schedule',
-                },
+                // {
+                //     route: routers.CALENDAR_PAGE,
+                //     element: <BsCalendar size="33px" color={sharedColors.primaryFontColor} />,
+                //     id: 'calendar',
+                //     name: 'Schedule',
+                // },
                 // {
                 //     route: routers.CHATPAGE,
                 //     element: <BsChatSquareDots size="33px" color={sharedColors.primaryFontColor} />,
@@ -155,17 +155,17 @@ export const SideBar = ({ select }) => {
         }
         else {
             navIcons = [
-                // {
-                //     route: routers.HOMEPAGE,
-                //     element: <BsPerson size="33px" color={sharedColors.primaryFontColor} />,
-                //     id: 'home',
-                //     name: 'Patients',
-                // }, 
                 {
-                    route: routers.CALENDAR_PAGE,
-                    element: <BsCalendar size="33px" color={sharedColors.primaryFontColor} />,
-                    id: 'calendar',
-                    name: 'Schedule',
+                    route: routers.HOMEPAGE,
+                    element: <BsPerson size="33px" color={sharedColors.primaryFontColor} />,
+                    id: 'home',
+                    name: 'Patients',
+                }, 
+                {
+                    // route: routers.CALENDAR_PAGE,
+                    // element: <BsCalendar size="33px" color={sharedColors.primaryFontColor} />,
+                    // id: 'calendar',
+                    // name: 'Schedule',
                 },
                 // {
                 //     route: routers.CHATPAGE,
@@ -185,12 +185,12 @@ export const SideBar = ({ select }) => {
                 //     id: 'setting',
                 //     name: 'Settings',
                 // }, 
-                {
-                    route: routers.TELEHEALTHPAGE,
-                    element: <BsCalendar size="33px" color={sharedColors.primaryFontColor} />,
-                    id: 'profile',
-                    name: 'Profile',
-                },
+                // {
+                //     route: routers.TELEHEALTHPAGE,
+                //     element: <BsCalendar size="33px" color={sharedColors.primaryFontColor} />,
+                //     id: 'profile',
+                //     name: 'Profile',
+                // },
                 {
                     route: "/",
                     // element: <BiLogOut size="33px" color={sharedColors.primaryFontColor} />,

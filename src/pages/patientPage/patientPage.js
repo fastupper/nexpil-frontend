@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import './style.css';
-import { SideBar } from '../../components';
+import './style.scss';
+// import { SideBar } from '../../components';
+import { NavBar, AddNewPatient } from '../../components';
 import { AvatarsContainer } from '../../components';
 import { sharedColors } from '../../theme/sharedColor';
 import { UserDataComponent } from '../../components';
@@ -12,7 +13,11 @@ export const PatientPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [mainPart, setMainPart] = useState("intro");
+    const [openNewPatient, setOpenNewPatient] = useState(false);
 
+    useEffect(() => {
+        console.log(openNewPatient);
+    }, [openNewPatient])
 
     useEffect(() => {
         const checkUserToken = () => {
@@ -35,12 +40,18 @@ export const PatientPage = () => {
     // Set main section
     const setMainSection = (part) => setMainPart(part);
 
+    const handleNewPatient = (val) => {
+        setOpenNewPatient((val) => !val)
+    }
+
     return (
-        <div className="intro-page-container">
-            <SideBar select={"patient"} />
+        <div className="patient-page">
+            {/* <SideBar select={"patient"} /> */}
+            <NavBar />
             <div className="main-section">
-                <AvatarsContainer setMainSection={setMainSection} />
-                <div className="intro-section-part">
+                <AvatarsContainer setMainSection={setMainSection} setSectionTitle="Patients" handleNewPatient={handleNewPatient} />
+                <AddNewPatient isOpen={openNewPatient} handleNewPatient={handleNewPatient} />
+                {/* <div className="intro-section-part">
                     {mainPart === "intro" ?
                         <div className="intro-page-intro-section">
                             <div>
@@ -50,7 +61,7 @@ export const PatientPage = () => {
                         </div>
                         : <UserDataComponent />
                     }
-                </div>
+                </div> */}
             </div>
         </div>
     )

@@ -2,15 +2,15 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   background-color: #F7F7FA;
 }
 
-.page-main-container {
+/* .page-main-container {
   width: 100%;
   height: 100%;
-}
+} */
 @font-face {
   font-family: boldTitles;
   src: url('./assets/fonts/Montserrat-Bold.otf');

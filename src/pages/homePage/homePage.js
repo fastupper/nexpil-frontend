@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './style.css';
+import './style.scss';
 import { SideBar } from '../../components';
 import { AvatarsContainer } from '../../components';
 import { sharedColors } from '../../theme/sharedColor';
@@ -79,7 +79,7 @@ export const HomePage = (props) => {
 
     }, [props.location])// eslint-disable-line react-hooks/exhaustive-deps
     return (
-        <div className="intro-page-container">
+        <div className="homePage">
             <SideBar select={"patient"} />
             <div className="main-section">
                 <AvatarsContainer setSectionTitle={sectionTitle} setMainSection={setMainPart} urlStatus="home" />

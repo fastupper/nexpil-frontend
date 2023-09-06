@@ -4,14 +4,14 @@ import {
     GET_USER, SET_PATIENT_SELECTED, GET_PATIENT_PERSONAL_DATA, GET_PATIENT_TASK_DATA,
     GET_PATIENT_MEDICATION_DATA, ADD_NEW_PATIENT, GET_PATIENT_HEALTH_DATA, GET_ASSIGNED_DATA
 } from '../../store/actionNames';
-import './style.css';
+import './style.scss';
 import { BsSearch, BsFillPlusCircleFill, BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs";
 import { sharedColors } from '../../theme/sharedColor';
 // import { useHistory } from "react-router-dom";
 // import VizSensor from 'react-visibility-sensor';
 // import { Fade } from '@material-ui/core';
 
-export const AvatarsContainer = ({ setMainSection, setSectionTitle }) => {
+export const AvatarsContainer = ({ setMainSection, setSectionTitle, handleNewPatient }) => {
     const dispatch = useDispatch();
     // const history = useHistory();
     // const [active, setActive] = useState(false);
@@ -61,6 +61,7 @@ export const AvatarsContainer = ({ setMainSection, setSectionTitle }) => {
             })
             : [];
         setUsersData(newUsersData);
+        console.log('===========>', newUsersData)
 
         const width = window.innerWidth;
         if (width <= 890) {
@@ -82,7 +83,10 @@ export const AvatarsContainer = ({ setMainSection, setSectionTitle }) => {
         } else setUsersData(patientList);
     }
 
-    const onClickAddNewPatient = () => dispatch({ type: ADD_NEW_PATIENT, payload: true });
+    const onClickAddNewPatient = () => {
+        // dispatch({ type: ADD_NEW_PATIENT, payload: true });
+        handleNewPatient(true)
+    }
 
     return (
         <div className="avatars">

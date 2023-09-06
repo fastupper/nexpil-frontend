@@ -21,7 +21,7 @@ export const LoginPage = () => {
             if (!token) {
                 history.push("/login");
             } else if (token) {
-                window.location.href = '/calendar';
+                window.location.href = '/';
                 // history.push("/calendar");
                 // window.location.href = '/calendar';
             }

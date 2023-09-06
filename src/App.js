@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useBeforeunload } from 'react-beforeunload';
 import {
-  HomePage,
+  // HomePage,
   PatientPage,
-  ChatPage,
-  CalendarPage,
-  NotificationPage,
-  SettingPage,
-  UserDetailPage,
+  // ChatPage,
+  // CalendarPage,
+  // NotificationPage,
+  // SettingPage,
+  // UserDetailPage,
   LoginPage,
-  RegisterPage,
-  TelehealthPage,
-  ProfilePage,
+  // RegisterPage,
+  // TelehealthPage,
+  // ProfilePage,
 } from './pages';
 import {
   Switch,
   Route,
-  withRouter
+  // withRouter
 } from "react-router-dom";
 import { routers } from './config/router';
-import Echo from 'laravel-echo';
+// import Echo from 'laravel-echo';
 import { useDispatch, useSelector } from 'react-redux';
 import Pusher from 'pusher-js';
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import { store } from 'react-notifications-component';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import { ADD_NEW_PATIENT, GET_ASSIGNED_DATA, GET_PATIENT_HEALTH_DATA, GET_PATIENT_MEDICATION_DATA, GET_PATIENT_PERSONAL_DATA, GET_PATIENT_TASK_DATA, GET_USER, SET_PATIENT_SELECTED } from './store/actionNames';
 
@@ -89,13 +90,13 @@ function App() {
       }
     });
   }, [patientsList]);
-  console.log(" patientsList---------- first ", patientsList)
+  // console.log(" patientsList---------- first ", patientsList)
   const onClickViewResults = (user, task) => {
     const selectedUserId = user.id;
     const patient = patientsList.find(item => item.id === selectedUserId);
-    console.log(" patientsList---------- inside ", patientsList)
-    console.log(" user---------- ", user)
-    console.log(" patient---------- ", patient)
+    // console.log(" patientsList---------- inside ", patientsList)
+    // console.log(" user---------- ", user)
+    // console.log(" patient---------- ", patient)
     if (patient) {
       dispatch({ type: "SET_MAIN_SECTION", payload: "userData" });
 
@@ -112,24 +113,24 @@ function App() {
   }
   return (
     <div className="super-container">
-      <div className="page-main-container">
+      {/* <div className="page-main-container"> */}
         <Switch>
-          <Route path={routers.HOMEPAGE} exact component={HomePage} />
-          <Route path={routers.PATIENTPAGE} exact component={PatientPage} />
+          <Route path={routers.LOGINPAGE} component={LoginPage} />
+          <Route path={routers.HOMEPAGE} exact component={PatientPage} />
+          {/* <Route path={routers.PATIENTPAGE} exact component={PatientPage} />
           <Route path={routers.CHATPAGE} component={ChatPage} />
           <Route path={routers.CALENDAR_PAGE} component={CalendarPage} />
           <Route path={routers.NOTIFICATION} component={NotificationPage} />
           <Route path={routers.SETTINGS} component={SettingPage} />
           <Route path={routers.DETAIL_PAGE} component={UserDetailPage} />
-          <Route path={routers.LOGINPAGE} component={LoginPage} />
           <Route path={routers.REGISTERPAGE} component={RegisterPage} />
           <Route path={routers.SETTINGPAGE} component={SettingPage} />
           <Route path={routers.TELEHEALTHPAGE} component={TelehealthPage} />
-          <Route path={routers.PROFILEPAGE} component={ProfilePage} />
+          <Route path={routers.PROFILEPAGE} component={ProfilePage} /> */}
 
         </Switch>
         <ReactNotification />
-      </div>
+      {/* </div> */}
     </div>
   );
 }
