@@ -150,7 +150,7 @@ export const Avatar = (props) => {
             {userNameSpan}
             <div onClick={() => props.onHandleClickAvatar(user)}
                 className={`${isVisible ? 'is-visible' : 'is-invisible'} ${user.selected === false ? "user-avatar" : "user-avatar-selected"}`}>
-                <img className="avatar-image" src={user.userimage} alt={user.userimage} />
+                <img className="avatar-image" src={user.userimage ? user.userimage : "/assets/images/avatar3.png"} alt={user.userimage} />
                 <div className="user-info">
                     <p className="user-name-text">{user.patient_name}</p>
                     <p className="user-chats-text">{user.DOB}</p>

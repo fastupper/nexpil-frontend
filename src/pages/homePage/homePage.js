@@ -60,7 +60,7 @@ export const HomePage = (props) => {
         if (!token) {
             history.push("/login");
         }
-        history.push('/calendar');
+        history.push('/');
     }
 
     // Style for the highlighted text color.

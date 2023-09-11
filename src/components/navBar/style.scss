@@ -86,6 +86,7 @@
         margin: 22px;
         padding: 10px;
         flex-direction: row;
+        cursor: pointer;
 
         .nav-user-text {
             padding: 5px 8px 5px 5px;
@@ -99,8 +100,9 @@
               }
       
               .nav-user-status {
-                font-size: 14px;
-                font-weight: normal;
+                font-size: 12px;
+                font-family: regularText;
+                text-align: right;
               }
         }
 

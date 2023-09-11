@@ -99,7 +99,7 @@ export const LoginPage = () => {
                             localStorage.setItem("userRole", "user");
                             dispatch({ type: USER_ROLE_SET, payload: "user" });
                         }
-                        window.location.href = '/calendar';
+                        window.location.href = '/';
                     }
                 } else {
                     alert("This user isn't registered user");
