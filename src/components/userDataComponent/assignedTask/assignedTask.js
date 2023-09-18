@@ -88,11 +88,13 @@ function AssignedTask(props) {
         console.log("isTemplate :", isTemplate);
         // console.log('isTemplate', isTemplate);
         if (taskList.length === 0) {
-            await showAlert({ content: "You need to add at least one task." });
+            // await showAlert({ content: "You need to add at least one task." });
+            alert("You need to add at least one task.");
             return;
         }
         if (!groupName) {
             await showAlert({ content: "Please type the name of task set" });
+            alert("Please type the name of task set");
             return;
         }
 

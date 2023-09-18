@@ -3,9 +3,13 @@ import "./style.scss";
 // import { SideBar } from '../../components';
 import { NavBar, AddNewPatient } from "../../components";
 import { AvatarsContainer } from "../../components";
+import AssignedTask from "../../components/userDataComponent/assignedTask/assignedTask";
 import { sharedColors } from "../../theme/sharedColor";
 // import { UserDataComponent } from '../../components';
-import { GET_PATIENTS_LIST } from "../../store/actionNames/homePageActions";
+import {
+  GET_PATIENTS_LIST,
+  GET_TRIALS,
+} from "../../store/actionNames/homePageActions";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Avatar from "@mui/material/Avatar";
@@ -16,10 +20,13 @@ export const PatientPage = () => {
   const [mainPart, setMainPart] = useState("intro");
   const [openNewPatient, setOpenNewPatient] = useState(false);
   const patientList = useSelector((state) => state.patientsList);
+  const patientSelect = useSelector(state => state.patientSelect);
+  // const currentSelectedUserData = useSelector(state => state.patientSelect);
+  // const sss = useState(currentSelectedUserData)
 
-  useEffect(() => {
-    console.log("<<<<<<>>>>>>======>", patientList);
-  }, [patientList]);
+  // useEffect(() => {
+  //   console.log("currentSelectedUserData======>", currentSelectedUserData);
+  // }, []);
 
   useEffect(() => {
     const checkUserToken = () => {
@@ -29,6 +36,7 @@ export const PatientPage = () => {
       }
     };
     dispatch({ type: GET_PATIENTS_LIST });
+    // dispatch({ type: GET_TRIALS });
     checkUserToken();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -54,78 +62,79 @@ export const PatientPage = () => {
           setSectionTitle="Patients"
           handleNewPatient={handleNewPatient}
         />
-        <div className="patient-detail">
-          <div className="patient-info">
-            <div className="patient-avatar">
-              <Avatar
-                alt="Remy Sharp"
-                src="/assets/images/avatar3.png"
-                sx={{ width: 130, height: 130 }}
-              />
-              <div className="d-flex">
-                <span className="small-text">Bradley Stanley</span>
-                <span className="small-text">46 yo</span>
+        {
+          patientSelect && 
+          (
+            <div className="patient-detail">
+            <div className="patient-info">
+              <div className="patient-avatar">
+                <Avatar
+                  alt="Remy Sharp"
+                  src="/assets/images/avatar3.png"
+                  sx={{ width: 130, height: 130 }}
+                />
+                <div className="d-flex">
+                  <span className="small-text">{patientSelect.first_name + " " + patientSelect.last_name}</span>
+                  {/* <span className="small-text">46 yo</span> */}
+                </div>
+              </div>
+              <div className="patient-info-header">
+                <div className="patient-info-header-section">
+                  <span className="medium-text">DOB: &nbsp;</span>
+                  <span className="small-text">{patientSelect.DOB}</span>
+                </div>
+                <div className="patient-info-header-section">
+                  <span className="medium-text">PHONE: &nbsp;</span>
+                  <span className="small-text"> {patientSelect.phone_number}</span>
+                </div>
+              </div>
+              <div className="patient-info-header">
+                <div className="patient-info-header-section">
+                  <span className="medium-text">STREET ADDRESS: &nbsp;</span>
+                  <span className="small-text">{patientSelect.address}</span>
+                </div>
+                <div className="patient-info-header-section">
+                  <span className="medium-text">
+                    CITY, STATE ZIP CODE: &nbsp;
+                  </span>
+                  <span className="small-text"> {patientSelect.city + ", " + patientSelect.zipcode}</span>
+                </div>
               </div>
             </div>
-            <div className="patient-info-header">
-              <div className="patient-info-header-section">
-                <span className="medium-text">DOB: &nbsp;</span>
-                <span className="small-text">hhhhh</span>
-              </div>
-              <div className="patient-info-header-section">
-                <span className="medium-text">PHONE: &nbsp;</span>
-                <span className="small-text"> 454541313</span>
-              </div>
-            </div>
-            <div className="patient-info-header">
-              <div className="patient-info-header-section">
-                <span className="medium-text">STREET ADDRESS: &nbsp;</span>
-                <span className="small-text">sdf sadf 324</span>
-              </div>
-              <div className="patient-info-header-section">
-                <span className="medium-text">
-                  CITY, STATE ZIP CODE: &nbsp;
-                </span>
-                <span className="small-text"> Paris, 32432</span>
-              </div>
-            </div>
+            {
+              patientSelect.trial_list.map((trial, index) => {
+                return (
+                  <div className="patient-trial" key={index}>
+                    <h3 style={{ fontFamily: "boldTitles", paddingLeft: '20px' }}>{trial.trial_name}</h3>
+                    <ul className="trial-list">
+                      {
+                        trial.trial_medications.map((medication, med_index) => {
+                          return (
+                            <li className="trial-list-item" key={med_index}>
+                              <div style={{ flex: 1 }}>
+                                  <span className="d-block" style={{ color: '#4939E3', fontSize: '25px', fontFamily: "mediumText" }}>{medication.medication_name} - {medication.strength}</span>
+                                  <span className="d-block" style={{ color: '#333333', fontSize: '20px', fontFamily: "mediumText" }}>Qty: {medication.total_medication_quantity_till_now}/{medication.quantity} Tablets Remaining</span>
+                              </div>
+                              <div style={{ flex: 1 }}>
+                                  <span className="d-block" style={{ color: '#4939E3', fontSize: '25px', fontFamily: "mediumText" }}>{medication.current_medication_day}/{medication.total_medication_days} days of Therapy Completed</span>
+                                  <span className="d-block" style={{ color: '#333333', fontSize: '20px', fontFamily: "mediumText" }}>Adherence: {medication.adherence}% (4 {medication.missed_doses})</span>
+                              </div>
+                            </li>
+                          )
+                        })
+                      }
+                    </ul>
+                  </div>
+                )
+              })
+            }
+            {/* <AssignedTask
+              homeUserName={"homeUserName"}
+              setCreatedGroupId={undefined}
+            /> */}
           </div>
-          <div className="patient-trial">
-            <h3 style={{ fontFamily: "boldTitles", paddingLeft: '20px' }}>Trial #01</h3>
-            <ul className="trial-list">
-              <li className="trial-list-item">
-                <div style={{ flex: 1 }}>
-                    <span className="d-block" style={{ color: '#4939E3', fontSize: '25px', fontFamily: "mediumText" }}>Trial Medication 1 - 0.25mcg</span>
-                    <span className="d-block" style={{ color: '#333333', fontSize: '20px', fontFamily: "mediumText" }}>Qty: 20/60 Tablets Remaining</span>
-                </div>
-                <div style={{ flex: 1 }}>
-                    <span className="d-block" style={{ color: '#4939E3', fontSize: '25px', fontFamily: "mediumText" }}>4/75 days of Therapy Completed</span>
-                    <span className="d-block" style={{ color: '#333333', fontSize: '20px', fontFamily: "mediumText" }}>Adherence: 85% (4 missed doses)</span>
-                </div>
-              </li>
-              <li className="trial-list-item">
-                <div style={{ flex: 1 }}>
-                    <span className="d-block" style={{ color: '#4939E3', fontSize: '25px', fontFamily: "mediumText" }}>Trial Medication 1 - 0.25mcg</span>
-                    <span className="d-block" style={{ color: '#333333', fontSize: '20px', fontFamily: "mediumText" }}>Qty: 20/60 Tablets Remaining</span>
-                </div>
-                <div style={{ flex: 1 }}>
-                    <span className="d-block" style={{ color: '#4939E3', fontSize: '25px', fontFamily: "mediumText" }}>4/75 days of Therapy Completed</span>
-                    <span className="d-block" style={{ color: '#333333', fontSize: '20px', fontFamily: "mediumText" }}>Adherence: 85% (4 missed doses)</span>
-                </div>
-              </li>
-              <li className="trial-list-item">
-                <div style={{ flex: 1 }}>
-                    <span className="d-block" style={{ color: '#4939E3', fontSize: '25px', fontFamily: "mediumText" }}>Trial Medication 1 - 0.25mcg</span>
-                    <span className="d-block" style={{ color: '#333333', fontSize: '20px', fontFamily: "mediumText" }}>Qty: 20/60 Tablets Remaining</span>
-                </div>
-                <div style={{ flex: 1 }}>
-                    <span className="d-block" style={{ color: '#4939E3', fontSize: '25px', fontFamily: "mediumText" }}>4/75 days of Therapy Completed</span>
-                    <span className="d-block" style={{ color: '#333333', fontSize: '20px', fontFamily: "mediumText" }}>Adherence: 85% (4 missed doses)</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+          )
+        }
 
         <AddNewPatient
           isOpen={openNewPatient}

@@ -13,7 +13,8 @@ import {
     chatUserSelect,
     userTaskGroupList,
     selectedTaskGroup,
-    patientPersonalAllergy
+    patientPersonalAllergy,
+    getTrials
 } from './usersReducers';
 import {
     setPatientChat,
@@ -35,5 +36,6 @@ export default combineReducers({
     chatUserSelect,
     userTaskGroupList,
     selectedTaskGroup,
-    patientPersonalAllergy
+    patientPersonalAllergy,
+    getTrials
 })

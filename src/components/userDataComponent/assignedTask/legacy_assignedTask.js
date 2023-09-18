@@ -1022,7 +1022,7 @@ export const LegacyAssignedTask = () => {
                                         />
                                     </div>
                                     <div className="col-6">
-                                        <input name="listDueDate" type="date"
+                                        <input name="listDueDate"
                                             type="date" style={{ color: infoDetails.listDueDate === undefined ? "grey" : "black" }}
                                             className="add-inputs" placeholder="Date"
                                             value={infoDetails.listDueDate === undefined ? "" : infoDetails.listDueDate}
@@ -1247,7 +1247,7 @@ export const LegacyAssignedTask = () => {
                                     </div>
                                     <div className="col-6">
                                         <input name="refer_doctor_due_date" className="add-inputs" placeholder="Due Date" type="date"
-                                            type="date" style={{ color: infoDetails.refer_doctor_due_date === undefined ? "grey" : "black" }}
+                                            style={{ color: infoDetails.refer_doctor_due_date === undefined ? "grey" : "black" }}
                                             value={infoDetails.refer_doctor_due_date === undefined ? "" : infoDetails.refer_doctor_due_date}
                                             onChange={(e) => setInfoDetails({ ...infoDetails, refer_doctor_due_date: e.target.value })}
                                         />
@@ -1287,7 +1287,7 @@ export const LegacyAssignedTask = () => {
                                     </div>
                                     <div className="col-6">
                                         <input name="refer_doctor_due_date" className="add-inputs" placeholder="Due Date" type="date"
-                                            type="date" style={{ color: infoDetails.refer_doctor_due_date === undefined ? "grey" : "black" }}
+                                            style={{ color: infoDetails.refer_doctor_due_date === undefined ? "grey" : "black" }}
                                             value={infoDetails.refer_doctor_due_date === undefined ? "" : infoDetails.refer_doctor_due_date}
                                             onChange={(e) => setInfoDetails({ ...infoDetails, refer_doctor_due_date: e.target.value })}
                                         />

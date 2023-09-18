@@ -20,6 +20,7 @@ export const AvatarsContainer = ({ setMainSection, setSectionTitle, handleNewPat
     
     const [arrowDirection, setArrowDirection] = useState(true);
     const [usersData, setUsersData] = useState([]);
+    const [selectedUser, setSelectedUser] = useState({});
 
     let check_user_name = "";
 
@@ -34,6 +35,7 @@ export const AvatarsContainer = ({ setMainSection, setSectionTitle, handleNewPat
         const selectedUserId = selectedUser.id;
         const user = usersData.find(user => user.id === selectedUserId);
         const patient = patientList.find(patient => patient.id === selectedUserId);
+        setSelectedUser(selectedUser);
 
         if (user && patient) {
             console.log(" selected user ======> ", user);
@@ -48,7 +50,7 @@ export const AvatarsContainer = ({ setMainSection, setSectionTitle, handleNewPat
             dispatch({ type: GET_PATIENT_HEALTH_DATA, payload: user.id });
             dispatch({ type: GET_ASSIGNED_DATA, payload: user.id });
             dispatch({ type: GET_PATIENT_TASK_DATA, payload: user.id });
-            dispatch({ type: ADD_NEW_PATIENT, payload: false });
+            // dispatch({ type: ADD_NEW_PATIENT, payload: false });
         }
     }
 
@@ -61,7 +63,8 @@ export const AvatarsContainer = ({ setMainSection, setSectionTitle, handleNewPat
             })
             : [];
         setUsersData(newUsersData);
-        console.log('===========>', newUsersData)
+        setSelectedUser(newUsersData[8])
+        // console.log('===========>', newUsersData[0])
 
         const width = window.innerWidth;
         if (width <= 890) {
@@ -108,9 +111,9 @@ export const AvatarsContainer = ({ setMainSection, setSectionTitle, handleNewPat
                     {
                         usersData && usersData.map((user, index) => {
                             let userNameSpan = "";
-                            if (check_user_name !== user.patient_name.slice(0, 1).toUpperCase()) {
-                                userNameSpan = <div>{user.patient_name.slice(0, 1).toUpperCase()}</div>;
-                                check_user_name = user.patient_name.slice(0, 1).toUpperCase();
+                            if (check_user_name !== user.first_name.slice(0, 1).toUpperCase()) {
+                                userNameSpan = <div>{user.first_name.slice(0, 1).toUpperCase()}</div>;
+                                check_user_name = user.first_name.slice(0, 1).toUpperCase();
                             }
                             return (<Avatar key={index} onHandleClickAvatar={() => onHandleClickAvatar(user)} user={user} userNameSpan={userNameSpan} />);
                         })
@@ -152,7 +155,7 @@ export const Avatar = (props) => {
                 className={`${isVisible ? 'is-visible' : 'is-invisible'} ${user.selected === false ? "user-avatar" : "user-avatar-selected"}`}>
                 <img className="avatar-image" src={user.userimage ? user.userimage : "/assets/images/avatar3.png"} alt={user.userimage} />
                 <div className="user-info">
-                    <p className="user-name-text">{user.patient_name}</p>
+                    <p className="user-name-text">{user.first_name + " " + user.last_name}</p>
                     <p className="user-chats-text">{user.DOB}</p>
                 </div>
                 {/* <div className="chat-info-part">

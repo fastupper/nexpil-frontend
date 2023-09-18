@@ -4,14 +4,14 @@ import {
   // HomePage,
   PatientPage,
   // ChatPage,
-  // CalendarPage,
+  CalendarPage,
   // NotificationPage,
   // SettingPage,
   // UserDetailPage,
   LoginPage,
   // RegisterPage,
   // TelehealthPage,
-  // ProfilePage,
+  ProfilePage,
 } from './pages';
 import {
   Switch,
@@ -66,6 +66,9 @@ function App() {
     // if (jwt_decode(token).exp < Date.now() / 1000) {
     //   localStorage.clear();
     // }
+    if (patientsList.length > 0) {
+      dispatch({ type: SET_PATIENT_SELECTED, payload: patientsList[8] });
+    }
     channel.bind('my-event', function (data) {
       const { patient, task } = data.payload;
       const patientFullName = patient["first_name"] + " " + patient["last_name"];
@@ -117,17 +120,17 @@ function App() {
         <Switch>
           <Route path={routers.LOGINPAGE} component={LoginPage} />
           <Route path={routers.HOMEPAGE} exact component={PatientPage} />
+          <Route path={routers.CALENDAR_PAGE} component={CalendarPage} />
+          <Route path={routers.PROFILEPAGE} component={ProfilePage} />
+
           {/* <Route path={routers.PATIENTPAGE} exact component={PatientPage} />
           <Route path={routers.CHATPAGE} component={ChatPage} />
-          <Route path={routers.CALENDAR_PAGE} component={CalendarPage} />
           <Route path={routers.NOTIFICATION} component={NotificationPage} />
           <Route path={routers.SETTINGS} component={SettingPage} />
           <Route path={routers.DETAIL_PAGE} component={UserDetailPage} />
           <Route path={routers.REGISTERPAGE} component={RegisterPage} />
           <Route path={routers.SETTINGPAGE} component={SettingPage} />
-          <Route path={routers.TELEHEALTHPAGE} component={TelehealthPage} />
-          <Route path={routers.PROFILEPAGE} component={ProfilePage} /> */}
-
+          <Route path={routers.TELEHEALTHPAGE} component={TelehealthPage} /> */}
         </Switch>
         <ReactNotification />
       {/* </div> */}

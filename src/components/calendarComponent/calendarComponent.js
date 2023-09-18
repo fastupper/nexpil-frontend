@@ -4,7 +4,7 @@ import FullCalendar, { formatDate } from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import './style.css'
+import './style.scss'
 import jwt from 'jwt-simple';
 import { sharedColors } from '../../theme/sharedColor';
 import Calendar1 from 'react-calendar';

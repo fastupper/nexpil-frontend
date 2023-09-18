@@ -29,7 +29,6 @@ export const HomePage = (props) => {
     // const patientList = useSelector(state => state.patientsList);
     // Dispatch the action for get patient list after components mounted
     useEffect(() => {
-        dispatch({ type: GET_PATIENTS_LIST });
         // checkUserToken();
         setHomeUserData();
         if (userRole === "admin") {
@@ -69,7 +68,7 @@ export const HomePage = (props) => {
     }
 
     useEffect(() => {
-        console.log(" hompage props ==> ", props)
+        // console.log(" hompage props ==> ", props)
         const { state } = props.location;
 
         if (state && state.mode) {

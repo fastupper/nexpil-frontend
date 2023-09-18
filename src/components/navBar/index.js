@@ -1,46 +1,50 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation  } from "react-router-dom";
 import Badge from "@mui/material/Badge";
 import Popover from "@mui/material/Popover";
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import MenuList from "@mui/material/MenuList";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "./style.scss";
+import { routers } from '../../config/router';
 
 export const NavBar = () => {
   const history = useHistory();
-  
+  let location = useLocation();
+
   const [anchorEl2, setAnchorEl2] = React.useState(null);
 
   const handleClickUser = (event) => {
     setAnchorEl2(event.currentTarget);
   };
-
+  console.log("location-", location.pathname, "--");
   const handleCloseUser = () => {
     setAnchorEl2(null);
   };
 
   const open2 = Boolean(anchorEl2);
-  const id2 = open2 ? 'simple-popover' : undefined;
+  const id2 = open2 ? "simple-popover" : undefined;
 
   const logOutHandle = () => {
     localStorage.clear();
     history.push("login");
-}
+  };
 
   return (
     <div className="navbar-component">
       <div className="navbar-log d-flex">
-        <h1>
-          n<span>.</span>
-        </h1>
+        <Link className="link-react" to={routers.HOMEPAGE}>
+          <h1>
+            n<span>.</span>
+          </h1>
+        </Link>
       </div>
       <div className="nav-main">
         <ul className="nav-list">
-          <li className="nav-item-selected">Patients</li>
-          <li className="nav-item-none-selected">Schedule</li>
+          <li className={location.pathname == routers.HOMEPAGE ? "nav-item-selected" : "nav-item-none-selected"}><Link className="link-react" to={routers.HOMEPAGE}>Patients</Link></li>
+          <li className={location.pathname == routers.CALENDAR_PAGE ? "nav-item-selected" : "nav-item-none-selected"}><Link className="link-react" to={routers.CALENDAR_PAGE}>Schedule</Link></li>
         </ul>
         <div className="nav-tool d-flex">
           <div className="nav-notification d-flex">
@@ -57,7 +61,11 @@ export const NavBar = () => {
               <img src="/assets/images/ring.png" alt="notification" />
             </Badge>
           </div>
-          <div className="nav-user d-flex" aria-describedby={id2} onClick={handleClickUser}>
+          <div
+            className="nav-user d-flex"
+            aria-describedby={id2}
+            onClick={handleClickUser}
+          >
             <div className="nav-user-text d-flex">
               <p className="nav-user-name">Dr, Tonya West</p>
               <span className="nav-user-status">online</span>
@@ -92,40 +100,46 @@ export const NavBar = () => {
           >
             <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
           </Popover> */}
-          
+
           <Popover
-                id={id2}
-                open={open2}
-                anchorEl={anchorEl2}
-                onClose={handleCloseUser}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                }}
-                transformOrigin={{
-                    vertical:'bottom',
-                    horizontal: 'center',
-                }}
-                backdropInvisible={false}
-                className="popover_class"
+            id={id2}
+            open={open2}
+            anchorEl={anchorEl2}
+            onClose={handleCloseUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "center",
+            }}
+            transformOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            backdropInvisible={false}
+            className="popover_class"
+          >
+            <MenuList
+              style={{
+                backgroundColor: "#EFF0F6",
+                paddingLeft: 20,
+                paddingRight: 20,
+              }}
             >
-                <MenuList style={{backgroundColor:"#EFF0F6", paddingLeft:20, paddingRight:20}}>
-                    <Link to="/profile">
-                        <MenuItem>             
-                            <ListItemText>Profile</ListItemText>
-                            <ListItemIcon>
-                                <ArrowForwardIosIcon fontSize="small" />
-                            </ListItemIcon>                        
-                        </MenuItem>
-                    </Link>
-                    <MenuItem onClick={logOutHandle} >                        
-                        <ListItemText>Log out</ListItemText>
-                        <ListItemIcon>
-                            <ArrowForwardIosIcon fontSize="small" />
-                        </ListItemIcon>                        
-                    </MenuItem>                    
-                </MenuList>
-            </Popover>
+              <Link to="/profile">
+                <MenuItem>
+                  <ListItemText>Profile</ListItemText>
+                  <ListItemIcon>
+                    <ArrowForwardIosIcon fontSize="small" />
+                  </ListItemIcon>
+                </MenuItem>
+              </Link>
+              <MenuItem onClick={logOutHandle}>
+                <ListItemText>Log out</ListItemText>
+                <ListItemIcon>
+                  <ArrowForwardIosIcon fontSize="small" />
+                </ListItemIcon>
+              </MenuItem>
+            </MenuList>
+          </Popover>
         </div>
       </div>
     </div>

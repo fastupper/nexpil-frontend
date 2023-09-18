@@ -1,33 +1,30 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
+
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import CloseIcon from "@mui/icons-material/Close";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import axios from 'axios';
+import axios from "axios";
 import { server, axios_header } from "../../config/server";
 import "./style.scss";
 
 export const AddNewPatient = ({ isOpen, handleNewPatient }) => {
+  const trials = useSelector((state) => state.getTrials);
+
   const [state, setState] = React.useState(isOpen);
   const [formData, setFormData] = React.useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    trial1: true,
-    trial2: false,
+    trials: [],
   });
+  // React.useEffect(() => {
+  //   console.log("trials =>>>>>>>", trials);
+  // }, [trials]);
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -49,14 +46,25 @@ export const AddNewPatient = ({ isOpen, handleNewPatient }) => {
     console.log(formData);
   }, [formData]);
 
+  const handleCheckTrial = (checked, id) => {
+    let new_trials = formData.trials;
+    if (new_trials.includes(id)) {
+      new_trials = new_trials.filter((item) => item !== id);
+    } else {
+      new_trials.push(id);
+    }
+    setFormData({...formData, trials: new_trials});
+  };
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
     let user = {
-        "first_name": formData.firstName,
-        "last_name": formData.lastName,
-        "phone_number": formData.phone,
-        "email": formData.email,
-    }
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      phone_number: formData.phone,
+      email: formData.email,
+      trials: formData.trials
+    };
     axios
       .post(server.serverURL + "v1/patients", user, axios_header)
       .then((res) => {
@@ -101,7 +109,7 @@ export const AddNewPatient = ({ isOpen, handleNewPatient }) => {
         // dispatch({ type: "ADD_TO_PATIENTS_LIST", payload });
       })
       .catch((e) => {
-        alert(`${e.response.data.error }`);
+        alert(`${e.response.data.error}`);
       });
   };
 
@@ -176,62 +184,43 @@ export const AddNewPatient = ({ isOpen, handleNewPatient }) => {
       >
         Trial Enrollment
       </p>
-      <div
-        className={
-          formData.trial1
-            ? "trial-checkbox-checked"
-            : "trial-checkbox-unChecked"
-        }
-        style={{ marginBottom: "10px" }}
-      >
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={formData.trial1}
-              sx={{
-                color: "#914DFF",
-                "&.Mui-checked": {
-                  color: "#914DFF",
-                },
-              }}
-              onChange={(e) => {
-                setFormData({ ...formData, trial1: e.target.checked });
-              }}
+      {trials.map((trial, index) => {
+        return (
+          <div
+            className={
+              formData.trials.includes(trial.id)
+                ? "trial-checkbox-checked"
+                : "trial-checkbox-unChecked"
+            }
+            style={{ marginBottom: "10px" }}
+            key={index}
+          >
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={formData.trials.includes(trial.id)}
+                  sx={{
+                    color: "#914DFF",
+                    "&.Mui-checked": {
+                      color: "#914DFF",
+                    },
+                  }}
+                  onChange={(e) => {
+                    handleCheckTrial(e.target.checked, trial.id);
+                  }}
+                />
+              }
+              label={trial.trial_name}
+              sx={{ margin: "0px", width: '100%' }}
             />
-          }
-          label="Trial 1"
-          sx={{ margin: "0px" }}
-        />
-      </div>
-      <div
-        className={
-          formData.trial2
-            ? "trial-checkbox-checked"
-            : "trial-checkbox-unChecked"
-        }
-      >
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={formData.trial2}
-              sx={{
-                color: "#914DFF",
-                "&.Mui-checked": {
-                  color: "#914DFF",
-                },
-              }}
-              onChange={(e) => {
-                setFormData({ ...formData, trial2: e.target.checked });
-              }}
-            />
-          }
-          label="Trial 2"
-          sx={{ margin: "0px" }}
-        />
-      </div>
+          </div>
+        );
+      })}
 
       <div style={{ flex: 1 }}> </div>
-      <button className="send-invite-btn" type="submit">Send Invitation</button>
+      <button className="send-invite-btn" type="submit">
+        Send Invitation
+      </button>
     </Box>
   );
 

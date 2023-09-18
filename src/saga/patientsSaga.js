@@ -27,7 +27,9 @@ function* getSelectedChatUser(action) {
 function* getPatientsList() {
     try {
         const patients = yield call(API.resultGet, "v1/patients");
-        yield put({ type: "PATIENTS_LIST", payload: patients.data.data.results })
+        console.log('aaaaaa', patients)
+        yield put({ type: "PATIENTS_LIST", payload: patients.data.data.data })
+        // yield put({ type: "GET_TRIALS", payload: patients.data.data.trial_list });
     } catch (e) {
         yield put({ type: "GET_PATIENTS_LIST_FAILED", message: e.message });
     }
@@ -139,6 +141,15 @@ function* onUserRoleSet(action) {
     yield put({ type: "USER_ROLE_SETED", payload: action.payload });
 }
 
+// function* getTrials() {
+//     try {
+//         const trials = yield call(API.resultGet, "v1/trials");
+//         yield put({ type: "GET_TRIALS", payload: trials.data.data.trial_list });
+//     } catch (e) {
+//         yield put({ type: "GET_TRIALS_FAILED", message: e.message });
+//     }
+// }
+
 // Export saga functions
 export default function* mySaga() {
     yield takeEvery(initialActions.GET_USER, getSelectedUser);
@@ -155,4 +166,5 @@ export default function* mySaga() {
     yield takeEvery(initialActions.GET_ASSIGNED_DATA, getAssignedData);
     yield takeEvery(initialActions.GET_PATIENT_TASK_DATA, getPatientTaskData)
     yield takeEvery(initialActions.GET_PATIENT_PERSONAL_ALLERGY, getPatientPersonalAllergy)
+    // yield takeEvery(initialActions.GET_TRIALS, getTrials)
 }

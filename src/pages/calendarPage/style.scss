@@ -1,35 +1,37 @@
-body {
-    font-family: Montserrat;
-}
-.calendar-main-section {
+.calendar-page {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  .calendar-main-section {
     /* padding-left: 15%; */
     display: flex;
     flex-direction: row;
     flex: 1;
     height: 100vh;
-    background-color: #F7F7FA;
-}
-.navigator_default_cell {
+    background-color: #f7f7fa;
+    margin-top: 130px;
+  }
+  .navigator_default_cell {
     background: white;
-}
-@media only screen and (max-width: 1500px) {
+  }
+  @media only screen and (max-width: 1500px) {
     .calendar-main-section {
-        padding-left: 7%;
+      padding-left: 7%;
     }
-}
+  }
 
-@media only screen and (max-width: 1335px) {
+  @media only screen and (max-width: 1335px) {
     .calendar-main-section {
-        padding-left: 0px;
-        margin-top: 125px;
-        flex-direction: column;
+      padding-left: 0px;
+      margin-top: 125px;
+      flex-direction: column;
     }
-}
-.modal_default_main {
+  }
+  .modal_default_main {
     border: white !important;
     border-radius: 15px;
-}
-.modal_default_ok {
+  }
+  .modal_default_ok {
     /* width: 80px !important; */
     background: linear-gradient(#f34545, #f7b1b1) !important;
     border: none !important;
@@ -37,8 +39,8 @@ body {
     color: white !important;
     outline: none !important;
     /* padding: 2% !important; */
-}
-.modal_default_cancel {
+  }
+  .modal_default_cancel {
     /* width: 80px !important; */
     background: linear-gradient(#5748e5, #aaa3f1) !important;
     border: none !important;
@@ -46,10 +48,11 @@ body {
     color: white !important;
     outline: none !important;
     /* padding: 2% !important; */
-}
-.navigator_default_month {
+  }
+  .navigator_default_month {
     font-size: 15px;
     font-family: Montserrat;
     padding: 2px;
     margin: 2px;
+  }
 }

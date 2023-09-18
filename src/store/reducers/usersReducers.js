@@ -131,3 +131,12 @@ export const userRole = (state = "user", action) => {
             return state;
     }
 }
+
+export const getTrials = (state = [], action) => {
+    switch (action.type) {
+        case "GET_TRIALS":
+            return action.payload;
+        default:
+            return state;
+    }
+}
