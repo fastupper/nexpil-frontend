@@ -1049,7 +1049,7 @@ export class Calendar extends React.Component {
                   </div>
                   <div className="col-md-10">
                     {nowData.map((item, index) => (
-                      <div class="d-flex flex-column justify-content-center" style={{ position: "absolute", top: i_bottom[index], height: 70, padding: 15, marginTop: 2, borderLeft: 'solid 3px rgb(209 189 147)', backgroundColor: i_color[index], borderRadius: 4 }}>
+                      <div className="d-flex flex-column justify-content-center" style={{ position: "absolute", top: i_bottom[index], height: 70, padding: 15, marginTop: 2, borderLeft: 'solid 3px rgb(209 189 147)', backgroundColor: i_color[index], borderRadius: 4 }}>
                         <div style={{ fontSize: 12, color: '#3535b9', fontWeight: 'bold' }}>{i_StartTime[index]}</div>
                         <div style={{ fontSize: 16, fontWeight: '600' }}>{item.title}</div>
                         <div style={{ fontSize: 12, color: "grey" }}>{item.description} <Link onClick={() => this.start_vCall(item.patient_id,item)}>start-call</Link></div>

@@ -60,11 +60,15 @@
 
 
 .popover_class{
-  margin-top: 120px;
-  border: 1px solid #00000094;
+  margin-top: 129px;
+  /* border: 1px solid #00000094;
+  border-radius: 1px; */
   background-color: #00000094;
-  border-radius: 1px;
   top: 0px!important;
+}
+
+.popover_class .MuiPaper-root {
+  top: 1px !important;
 }
 
 .popover_class::before{

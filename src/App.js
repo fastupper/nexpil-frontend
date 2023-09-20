@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Pusher from 'pusher-js';
 // import jwt_decode from "jwt-decode";
 
-import ReactNotification from 'react-notifications-component'
+// import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import { store } from 'react-notifications-component';
 
@@ -53,7 +53,7 @@ var pusher = new Pusher('289fb69b45fa3edfc19d', {
 });
 var channel = pusher.subscribe('my-channel');
 
-function App() {
+const App = () => {
   
   const dispatch = useDispatch();
   const userInfo = useSelector(state => state.userInfo);
@@ -132,7 +132,7 @@ function App() {
           <Route path={routers.SETTINGPAGE} component={SettingPage} />
           <Route path={routers.TELEHEALTHPAGE} component={TelehealthPage} /> */}
         </Switch>
-        <ReactNotification />
+        {/* <ReactNotification /> */}
       {/* </div> */}
     </div>
   );

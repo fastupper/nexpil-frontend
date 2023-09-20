@@ -196,7 +196,7 @@ export const ProfilePage = () => {
       <div className="profile-app">
         <div className="profile-form">
           <div>
-            <h1 class="avatars-title-text" style={{ fontSize: 33 }}>
+            <h1 className="avatars-title-text" style={{ fontSize: 33 }}>
               Profile
               <span style={{ color: "rgb(57, 211, 227)" }}>.</span>
             </h1>
@@ -272,7 +272,7 @@ export const ProfilePage = () => {
         </div>
         <div className="profile-form ml-2">
           <div>
-            <h1 class="avatars-title-text" style={{ fontSize: 33 }}>
+            <h1 className="avatars-title-text" style={{ fontSize: 33 }}>
               Login & Password
               <span style={{ color: "rgb(57, 211, 227)" }}>.</span>
             </h1>
@@ -297,7 +297,7 @@ export const ProfilePage = () => {
                 onChange={changePasswordHandle}
               />
               <i
-                class="fa fa-eye fa-lg fa-fw"
+                className="fa fa-eye fa-lg fa-fw"
                 name="oldPassword"
                 aria-hidden="true"
                 style={{ cursor: "pointer" }}
@@ -315,7 +315,7 @@ export const ProfilePage = () => {
                 onChange={changePasswordHandle}
               />
               <i
-                class="fa fa-eye fa-lg fa-fw"
+                className="fa fa-eye fa-lg fa-fw"
                 name="newPassword"
                 aria-hidden="true"
                 style={{ cursor: "pointer" }}
@@ -333,7 +333,7 @@ export const ProfilePage = () => {
                 onChange={changePasswordHandle}
               />
               <i
-                class="fa fa-eye fa-lg fa-fw"
+                className="fa fa-eye fa-lg fa-fw"
                 name="confirmPassword"
                 aria-hidden="true"
                 style={{ cursor: "pointer" }}

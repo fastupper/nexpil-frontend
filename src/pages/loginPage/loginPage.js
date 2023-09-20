@@ -52,7 +52,7 @@ export const LoginPage = () => {
                     <TextField onKeyDown={handleEnter} ref={passwordRef} id="filled-basic" label="Password" variant="filled" className="login-form" /> */}
                 </div>
                 <label className="forgot">Forgot Password?</label>
-                <div class="log-button">
+                <div className="log-button">
                     <button className="login-btn" onClick={onLoginClick}>{props.title}</button>
                 </div>
                 {/* <div className="login-row">
