@@ -99,27 +99,48 @@
         cursor: pointer;
 
         .nav-user-text {
-            padding: 5px 8px 5px 5px;
-            flex-direction: column;
-            justify-content: center;
-            
-            .nav-user-name {
-                font-size: 14px;
-                font-family: boldTitles;
-                margin: 0px;
-              }
-      
-              .nav-user-status {
-                font-size: 12px;
-                font-family: regularText;
-                text-align: right;
-              }
+          padding: 5px 8px 5px 5px;
+          flex-direction: column;
+          justify-content: center;
+
+          .nav-user-name {
+            font-size: 14px;
+            font-family: boldTitles;
+            margin: 0px;
+          }
+
+          .nav-user-status {
+            font-size: 12px;
+            font-family: regularText;
+            text-align: right;
+          }
         }
 
         img {
           width: 60px;
           height: 60px;
         }
+      }
+
+      .popover_class {
+        margin-top: 129px;
+        /* border: 1px solid #00000094;
+        border-radius: 1px; */
+        background-color: #00000094;
+        top: 0px !important;
+      }
+
+      .popover_class .MuiPaper-root {
+        top: 1px !important;
+      }
+
+      .popover_class::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        right: 5px;
+        z-index: 10;
+        border-radius: 1px;
       }
     }
   }
