@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Route, BrowserRouter } from "react-router-dom";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './saga';
 
@@ -12,7 +12,9 @@ ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <BrowserRouter>
-        <Route component={App} />
+        <Routes>
+          <Route component={App} />
+        </Routes>
       </BrowserRouter>
     </React.StrictMode>
   </Provider>,
