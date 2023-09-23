@@ -813,7 +813,7 @@ export class Calendar extends React.Component {
             <div className="form-group">
               {/* <label>Patient</label> */}
               <select ref={this.patient_id_ref} className="form-control" value={this.state.patient_id} name="patient" onChange={this.handlePChange}>
-                {this.state.patientlist.map((item, i) => {
+                {this.state.patientlist && this.state.patientlist.map((item, i) => {
                   return <option value={item.id} key={i}>{item.first_name + " " + item.last_name}</option>;
                 })}
               </select>
